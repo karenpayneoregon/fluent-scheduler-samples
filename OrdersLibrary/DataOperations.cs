@@ -66,5 +66,15 @@ public class DataOperations
                 .SetProperty(order => order.OrderIsNew,
                     order => true));
     }
+    public static async Task UpdateTodayOrdersAsync()
+    {
+        var today = TodayDate();
+        await using var context = new Context();
+        await context.Orders.AsNoTracking()
+            .Where(order => order.OrderDate!.Value == today)
+            .ExecuteUpdateAsync(s => s
+                .SetProperty(order => order.OrderIsNew,
+                    order => true));
+    }
 }
 

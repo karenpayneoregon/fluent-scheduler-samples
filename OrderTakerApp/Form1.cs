@@ -18,8 +18,8 @@ public partial class Form1 : Form
         listBox1.Items.Add(order);
     }
 
-    private void ResetButton_Click(object sender, EventArgs e)
+    private async void ResetButton_Click(object sender, EventArgs e)
     {
-        DataOperations.UpdateTodayOrders();
+        await DataOperations.UpdateTodayOrdersAsync();
     }
 }
